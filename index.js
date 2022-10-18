@@ -150,7 +150,7 @@ app.use((req,res,next)=>{
   app.post('/todo/:id/image',upload.array('image'), async (req,res)=>{
     const {id}=req.params;
     const user=await User.findById(id);
-    console.log(req.files);
+    //console.log(req.files);
     for(let i=0;i<req.files.length;i++){
         const ne={
             url:req.files[i].path,
@@ -158,7 +158,7 @@ app.use((req,res,next)=>{
         }
         user.image.push(ne);
     }
-    console.log(user);
+    //console.log(user);
     await user.save();
     res.redirect('/todo');
   })
@@ -172,13 +172,22 @@ app.use((req,res,next)=>{
   app.put('/todo/:id/edit', upload.array('image'), async (req,res)=>{
     const {id}=req.params;
     let {fname, work}=req.body;
-    const nwork=[]
-    for(let i=0;i<work.length;i++){
-      if(work[i]!=''){
-        nwork.push(work[i]);
+    //console.log(work)
+    try{
+      work.forEach(a=>{
+        const nwork=[]
+      for(let i=0;i<work.length;i++){
+        if(work[i]!=''){
+          nwork.push(work[i]);
+        }
       }
+      work=nwork;
+      })
     }
-    work=nwork;
+    catch{
+      
+    }
+    
     const user=await User.findById(id);
     user.work=work;
     user.fname=fname;

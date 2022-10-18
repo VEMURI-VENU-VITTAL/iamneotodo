@@ -20,8 +20,8 @@
             </div>
           <%}%>
           <form class="d-inline" action="/todo/<%=user[k]._id%>/image" method="post" enctype="multipart/form-data">
-            <input type="file" name="image">
-            <button>+</button>
+            <input type="file" name="image" class="mb-2">
+            <button class="btn btn-success">Add IMG</button>
           </form>
           <div class="card-body">
             <h5 class="card-title"><%=user[k].fname%></h5>

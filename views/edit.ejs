@@ -1,0 +1,31 @@
+<%layout('layouts/boilerplate')%>
+
+
+<div class="row">
+    <h1 class="text-center">ADDING USER DETAILS</h1>
+    <div class="col-6 offset-4">
+            <form action="/todo/<%=user._id%>/edit?_method=put" method="post" class="row g-3" enctype="multipart/form-data">
+                <div class="md-6">
+                    <label for="fname" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="fname" name="fname" value="<%=user.fname%>">
+                  </div>
+                  <%for(let i=0;i<user.work.length;i++){%>
+                    <div class="md-6">
+                      <label for="work" class="form-label">Task <%=i+1%></label>
+                      <input type="text" class="form-control" id="work" name="work" value="<%=user.work[i]%>">
+                    </div>
+                  <%}%>
+
+                <div class="col-12">
+                  <button class="btn btn-info">EDIT</button>
+                </div>
+            </form>
+            <%for(let j=0;j<user.image.length;j++){%>
+              <form action="/todo/<%=user._id%>/<%=j%>/dimg?_method=delete" method="post" class="mb-3">
+                <button class="btn btn-danger mb-3" style="width: 200px;">Img <%=j+1%> x</button>
+              </form>
+              
+            <%}%>
+    </div>
+</div>
+

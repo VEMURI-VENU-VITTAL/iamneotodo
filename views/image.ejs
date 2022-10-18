@@ -1,0 +1,16 @@
+<%layout('layouts/boilerplate')%>
+
+    
+<h1>MALE IMAGES</h1>
+<%for(let i=0;i<30;i++){%>
+    <%const num=Math.floor(Math.random()*user.length)%>
+        <a href="/random/image/<%=user[num]._id%>" class="btn"><img src="<%=user[num].image[0].url%>" alt="" style="width:150px; height:150px"></a>
+<%}%>
+
+<h1>FEMALE IMAGES</h1>
+<%for(let i=0;i<30;i++){%>
+    <%const num=Math.floor(Math.random()*fuser.length)%>
+        <a href="/random/image/<%=fuser[num]._id%>" class="btn"><img src="<%=fuser[num].image[0].url%>" alt="" style="width:150px; height:150px"></a>
+
+<%}%>
+

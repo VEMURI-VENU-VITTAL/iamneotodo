@@ -1,0 +1,16 @@
+<%layout('layouts/boilerplate')%>
+
+<%for(let i=0;i<user.image.length;i++){%>
+  <img src="<%=user.image[i].url%>" alt="" style="width: 400px; height:400px" class="mb-3">
+<%}%>
+
+<h1>WORKS REMAINING</h1>
+<%for(let i=0;i<user.work.length;i++){%>
+  <div class="card" style="width: auto;">
+    <div class="card-body">
+      <%=user.work[i]%>
+    </div>
+  </div>
+<%}%>
+
+    

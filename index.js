@@ -117,21 +117,21 @@ app.use((req,res,next)=>{
     res.render('home.ejs',{user});
   })
 
-  app.post('/todo', async(req,res)=>{
+  app.post('/todo',isLoggedIn, async(req,res)=>{
     const {fname}=req.body;
     const user=await new User({fname:fname,author:req.user._id});
     await user.save();
     res.redirect("/todo");
   })
 
-  app.post('/todo/search',async (req,res)=>{
+  app.post('/todo/search',isLoggedIn,async (req,res)=>{
     
     const {search}=req.body;
     const user=await User.find({fname:search, author:req.user._id});
     res.render('search.ejs', {user});
   })
 
-  app.post('/todo/:id', async(req,res)=>{
+  app.post('/todo/:id', isLoggedIn, async(req,res)=>{
     const {work}=req.body;
     const {id}=req.params;
     const user=await User.findById(id);
@@ -141,7 +141,7 @@ app.use((req,res,next)=>{
     res.redirect('/todo');
   })
 
-  app.delete('/todo/:id',async(req,res)=>{
+  app.delete('/todo/:id',isLoggedIn,async(req,res)=>{
     const {id}=req.params;
     await user.findByIdAndDelete(id);
     res.redirect('/todo');
@@ -163,7 +163,7 @@ app.use((req,res,next)=>{
     res.redirect('/todo');
   })
 
-  app.get('/todo/:id/edit',async (req,res)=>{
+  app.get('/todo/:id/edit',isLoggedIn,async (req,res)=>{
     const {id}=req.params;
     const user=await User.findById(id);
     res.render('edit.ejs', {user});
